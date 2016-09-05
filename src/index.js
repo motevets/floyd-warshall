@@ -3,7 +3,7 @@
 const Matrix = require('ml-matrix');
 
 /**
- * Algorithm that finds the shortest distance from one node to the other
+ * Algorithm that finds the widest distance from one node to the other
  * @param {Matrix} adjMatrix - A squared adjacency matrix
  * @return {Matrix} - Distance from a node to the other, -1 if the node is unreachable
  */
@@ -23,23 +23,24 @@ function floydWarshall(adjMatrix) {
                 distMatrix.set(row, column, val);
             // 0 values become infinity
             else
-                distMatrix.set(row, column, Number.POSITIVE_INFINITY);
+                distMatrix.set(row, column, 0);
         }
     });
 
-    for (let k = 0; k < numVertices; ++k)
-        for (let i = 0; i < numVertices; ++i)
+    for (let k = 0; k < numVertices; ++k) {
+        for (let i = 0; i < numVertices; ++i) {
+            if (i === k)
+                continue;
             for (let j = 0; j < numVertices; ++j) {
-                let dist = distMatrix.get(i, k) + distMatrix.get(k, j);
-                if (distMatrix.get(i, j) > dist)
-                    distMatrix.set(i, j, dist);
+                if (j === i || j === k)
+                    continue;
+                const direct = distMatrix.get(i, j);
+                const detour = Math.min(distMatrix.get(i, k), distMatrix.get(k, j));
+                if (detour > direct)
+                    distMatrix.set(i, j, detour);
             }
-
-    // When there's no connection the value is -1
-    distMatrix.apply((row, column) => {
-        if (distMatrix.get(row, column) === Number.POSITIVE_INFINITY)
-            distMatrix.set(row, column, -1);
-    });
+        }
+    }
     return distMatrix;
 }
 
