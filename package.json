@@ -1,7 +1,7 @@
 {
-  "name": "ml-floyd-warshall",
+  "name": "floyd-warshall",
   "version": "1.0.0",
-  "description": "Algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles)",
+  "description": "Algorithm for finding shortest and widest paths in a weighted graph",
   "main": "./src/index.js",
   "files": [
     "src"
@@ -10,42 +10,37 @@
     "eslint": "eslint src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "npm run test-mocha && npm run eslint",
-    "test-mocha": "mocha --require should --reporter mocha-better-spec-reporter"
+    "test-mocha": "mocha --require should --reporter mocha-better-spec-reporter",
+    "generate-docs": "jsdoc2md src/index.js > jsdoc.md"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mljs/floyd-warshall.git"
+    "url": "https://github.com/motevets/floyd-warshall.git"
   },
   "keywords": [
-    "machine",
-    "learning",
-    "data",
-    "mining",
-    "datamining",
     "floyd",
     "warshall",
     "floyd-warshall",
+    "shortest",
+    "widest",
     "path"
   ],
   "engines": {
-    "node": ">=2.0.0"
+    "node": ">=4.0.0"
   },
-  "author": "Miguel Asencio <maasencioh@gmail.com> (https://github.com/maasencioh)",
+  "author": "Tom Dunlap <stevetom@motevets.com> (https://github.com/motevets)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mljs/floyd-warshall/issues"
+    "url": "https://github.com/motevets/floyd-warshall/issues"
   },
-  "homepage": "https://github.com/mljs/floyd-warshall#readme",
-  "tonicExampleFilename": "./tonic.js",
+  "homepage": "https://github.com/motevets/floyd-warshall#readme",
   "devDependencies": {
     "eslint": "^3.4.0",
-    "eslint-config-cheminfo": "^1.1.2",
+    "eslint-config-standard": "^6.0.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
+    "jsdoc-to-markdown": "^1.3.7",
     "mocha": "^3.0.2",
     "mocha-better-spec-reporter": "^3.0.2",
     "should": "^11.1.0"
-  },
-  "dependencies": {
-    "ml-matrix": "^2.0.0"
   }
 }

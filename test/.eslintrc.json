@@ -1,0 +1,9 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "no-multi-spaces": 0,
+    "standard/array-bracket-even-spacing": 0
+  }
+}
